@@ -37,7 +37,7 @@ def operation(string):
     elif operator == "-":
         return SubtractionNode(parser(tokens[0]),parser(tokens[1]))
     elif operator == "%":
-        return ModuleNode(parser(tokens[0]), parser(tokens[1]))
+        return ModuloNode(parser(tokens[0]), parser(tokens[1]))
 
 
 def splitArgs(string): ## NO SE MODIFICA!

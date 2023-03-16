@@ -106,9 +106,9 @@ class SubtractionNode(BinaryOperatorNode):
 
 
 # Operador Modulo -> Resto :)
-class ModuleNode(BinaryOperatorNode):
-    def __init__(self, leftNode, rightNode, sym):
-        super().__init__(leftNode, rightNode, sym)
+class ModuloNode(BinaryOperatorNode):
+    def __init__(self, leftNode, rightNode):
+        super().__init__(leftNode, rightNode, "%")
         
     def eval(self):
         return self.leftNode.eval() % self.rightNode.eval()

@@ -27,3 +27,16 @@ class AdditionCounter(Visitor):
 
     def total(self):
         return self.counter
+
+
+class ModuloOperatorCounter(Visitor):
+    def __init__(self):
+        self.counter = 0
+
+    def visit_Modulo(self, node):
+        node.leftNode.accept(self)
+        node.rightNode.accept(self)
+        self.counter = self.counter + 1
+
+    def total(self):
+        return self.counter
