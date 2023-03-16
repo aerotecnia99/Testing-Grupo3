@@ -105,6 +105,17 @@ class SubtractionNode(BinaryOperatorNode):
         visitor.visit_Subtract(self)
 
 
+# Operador Modulo -> Resto :)
+class ModuleNode(BinaryOperatorNode):
+    def __init__(self, leftNode, rightNode, sym):
+        super().__init__(leftNode, rightNode, sym)
+        
+    def eval(self):
+        return self.leftNode.eval() % self.rightNode.eval()
+
+    def accept(self, visitor):
+        visitor.visit_Modulo(self)
+
 # Visitor
 class Visitor:
     # Los nodos compuestos deben propagar la visita a los subnodos
@@ -113,6 +124,10 @@ class Visitor:
         node.rightNode.accept(self)
 
     def visit_Subtract(self, node):
+        node.leftNode.accept(self)
+        node.rightNode.accept(self)
+
+    def visit_Modulo(self, node):
         node.leftNode.accept(self)
         node.rightNode.accept(self)
 

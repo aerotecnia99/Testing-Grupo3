@@ -10,12 +10,14 @@ def parser(stringCode):
     else:
         raise Exception("Expression " , stringCode, " not supported.")
 
+
 def isNumber(string):
     return string.isnumeric()
 
+
 def isOperation(string):
     res = False
-    validOperators = {'+': 2, '-': 2}
+    validOperators = {'+': 2, '-': 2, '%': 2}
     # Primero verificamos si tiene ambos parentesis de la sintaxis
     if string[0] == '(' and string[len(string)-1] == ')':
         # Partimos por espacios la cadena sin considerar el primer y el ultimo parentesis
@@ -25,6 +27,7 @@ def isOperation(string):
         res = operator in validOperators and len(tokens) == validOperators.get(operator)
     return res
 
+
 def operation(string):
     tokens = splitArgs(string[1:len(string)-1])
     operator = tokens.pop(0)
@@ -33,8 +36,11 @@ def operation(string):
         return AdditionNode(parser(tokens[0]), parser(tokens[1]))
     elif operator == "-":
         return SubtractionNode(parser(tokens[0]),parser(tokens[1]))
+    elif operator == "%":
+        return ModuleNode(parser(tokens[0]), parser(tokens[1]))
 
-def splitArgs(string):
+
+def splitArgs(string): ## NO SE MODIFICA!
     open_counter = 0
     temp = ""
     result = []
