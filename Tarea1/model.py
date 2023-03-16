@@ -42,9 +42,7 @@ class LiteralNode(Node):
 
 # Numero
 class NumberNode(LiteralNode):
-
     
-	
     def accept(self, visitor):
         visitor.visit_Number(self)
 
@@ -64,6 +62,22 @@ class OperatorNode(Node):
         return self.__class__ == other.__class__ and self.symbol == other.symbol
 
 
+# Operador unario
+class UnaryOperatorNode(OperatorNode):
+    def __init__(self, onlyNode, sym):
+        super().__init__(sym)
+        self.onlyNode = onlyNode
+    
+    def to_string(self):
+        return "(" + self.symbol + " " + self.onlyNode.to_string() + ")"
+
+    def accept(self, visitor):
+        pass
+
+    def __eq__(self, other):
+        return self.__class__ == other.__class__ and self.onlyNode == other.onlyNode and self.symbol == other.symbol
+
+
 # Operador binario
 class BinaryOperatorNode(OperatorNode):
     def __init__(self, leftNode, rightNode, sym):
@@ -76,6 +90,7 @@ class BinaryOperatorNode(OperatorNode):
 
     def accept(self, visitor):
         visitor.visit_BinaryOperator(self)
+        # Esto al parecer podría ser un pass pq jamás se ocupa directamente esta clase.
 
     def __eq__(self, other):
         return self.__class__ == other.__class__ and self.leftNode == other.leftNode and self.symbol == other.symbol and self.rightNode == other.rightNode
@@ -115,6 +130,42 @@ class ModuloNode(BinaryOperatorNode):
 
     def accept(self, visitor):
         visitor.visit_Modulo(self)
+        
+
+# Operador PlusPlus
+class PlusPlusNode(UnaryOperatorNode):
+    def __init__(self, onlyNode):
+        super().__init__(onlyNode, "++")
+    
+    def __eq__(self, other):
+        return super().__eq__(other)
+
+    def eval(self):
+        return self.onlyNode.eval() + 1
+
+    def to_string(self):
+        return super().to_string()
+
+    def accept(self, visitor):
+        visitor.visit_PlusPlus(self)
+
+# Operador MinusMinus
+class MinusMinusNode(UnaryOperatorNode):
+    def __init__(self, onlyNode):
+        super().__init__(onlyNode, "--")
+
+    def __eq__(self, other):
+        return super().__eq__(other)
+    
+    def eval(self):
+        return self.onlyNode.eval() - 1
+
+    def to_string(self):
+        return super().to_string()
+    
+    def accept(self, visitor):
+        visitor.visit_MinusMinus(self)
+    
 
 # Visitor
 class Visitor:
@@ -130,6 +181,12 @@ class Visitor:
     def visit_Modulo(self, node):
         node.leftNode.accept(self)
         node.rightNode.accept(self)
+    
+    def visit_PlusPlus(self, node):
+        node.onlyNode.accept(self)
+    
+    def visit_MinusMinus(self, node):
+        node.onlyNode.accept(self)
 
     def visit_Number(self, node):
         pass

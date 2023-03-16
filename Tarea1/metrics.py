@@ -40,3 +40,19 @@ class ModuloOperatorCounter(Visitor):
 
     def total(self):
         return self.counter
+
+
+class UnaryOperatorCounter(Visitor):
+    def __init__(self):
+        self.counter = 0
+
+    def visit_PlusPlus(self, node):
+        node.onlyNode.accept(self)
+        self.counter = self.counter + 1
+
+    def visit_MinusMinus(self, node):
+        node.onlyNode.accept(self)
+        self.counter = self.counter + 1
+
+    def total(self):
+        return self.counter
