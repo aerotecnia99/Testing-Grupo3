@@ -1,6 +1,6 @@
 import unittest
 from model import *
-from myparser import *
+from parser import *
 from metrics import *
 
 
