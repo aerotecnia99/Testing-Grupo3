@@ -5,7 +5,7 @@ from .rewriter import *
 
 class IfTrueTransformer(NodeTransformer):
     def visit_If(self, node):
-        NodeTransformer.generic_visit(self, node)
+        NodeTransformer.generic_visit(self, node)   # Queremos que se transformen los hijos y luego nosotros, sino podrían surgir problemas de identación, dejar líneas vacías, etc.
         statements = node
         if isinstance(node.test, Constant):
             if node.test.value == True:

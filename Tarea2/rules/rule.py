@@ -1,3 +1,4 @@
+# ARCHIVO DE CLASES BÁSICAS
 from ast import *
 
 class Warning:
@@ -30,7 +31,7 @@ class Rule:
     def __init__(self):
         self.warningsList = []
     
-    def analyze(self, ast):
+    def analyze(self, ast): # Responsabilidad de sus subclases analizar
         pass
     
     # Debe retornar una lista de objetos warnings

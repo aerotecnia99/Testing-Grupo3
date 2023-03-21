@@ -9,7 +9,16 @@ class TestParser(unittest.TestCase):
     ## En operación modular "a mod b", b>0 !!\
     ## Resto también debe ser positivo.
     ## Agregar test que empieza con módulo y números grandes
-    
+    def test_modulo_inicio(self):
+        ast = parser("(% (++ (- 50 (+ (++ 7) (% (- 1 22) (- (++ 53) 50))))) (+ (++ 7) (% (-- 42) (- (++ 12) 3))))")
+        result = ast.eval()
+        self.assertEqual(result, 4)
+
+    def test_grandes_numeros(self):
+        ast = parser("(% (- 50000 7) (+ (-- 2000) (++ 5000)))") 
+        result = ast.eval()
+        self.assertEqual(result, 993)
+
     # Test Mix Operaciones Unarias y Binarias
     def test_mix_bin_una(self):
         ast = parser("(+ (++ 7) (% (-- 42) (- (++ 12) 3)))")

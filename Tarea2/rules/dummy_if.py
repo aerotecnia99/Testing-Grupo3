@@ -5,7 +5,7 @@ from .rule import *
 
 class DummyIfVisitor(WarningNodeVisitor):
 
-    def visit_If(self, node: If):
+    def visit_If(self, node: If):       # Solo si estamos visitando un nodo if se ejecutará esta función
         if isinstance(node.test, Constant):
             if node.test.value == True:
                 self.addWarning('DummyIfWarning', node.lineno, 'this if does not have any sense!')
