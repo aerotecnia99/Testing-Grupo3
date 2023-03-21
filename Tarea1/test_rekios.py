@@ -8,6 +8,7 @@ class TestParser(unittest.TestCase):
     ### OJITOOO
     ## En operación modular "a mod b", b>0 !!\
     ## Resto también debe ser positivo.
+    ## Agregar test que empieza con módulo y números grandes
     
     # Test Mix Operaciones Unarias y Binarias
     def test_mix_bin_una(self):
