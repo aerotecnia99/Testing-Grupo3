@@ -36,6 +36,7 @@ class UncoupledMethodVisitor(WarningNodeVisitor):
 
 
 class UncoupledMethodRule(Rule):
+    
     def analyze(self, ast):
         visitor = UncoupledMethodVisitor()
         visitor.visit(ast)

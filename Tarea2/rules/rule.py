@@ -49,3 +49,5 @@ class WarningNodeVisitor(NodeVisitor):
 
     def warningsList(self):
         return self.warnings
+
+
