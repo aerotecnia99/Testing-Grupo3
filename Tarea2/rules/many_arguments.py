@@ -26,6 +26,7 @@ class ManyArgumentsVisitor(WarningNodeVisitor):
         if len(node.args.args) > self.threshold:
             self.addWarning('ManyArguments', node.lineno, 'function '+ node.name + ' defined with many arguments!')
 
+
 class ManyArgumentsRule(Rule):
 
     def analyze(self, ast):

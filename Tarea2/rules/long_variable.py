@@ -1,5 +1,5 @@
 from .rule import *
-import warnings
+
 
 class LongVariableVisitor(WarningNodeVisitor):
     """ Considera variables temporales y de instancia """
