@@ -45,7 +45,7 @@ class TestWarnings(unittest.TestCase):
         Warning('VariableLongName', 3, 'variable mysuperlistofone has a long name'),
         Warning('VariableLongName', 4, 'variable mysuperlistfrom1to10 has a long name'),
         Warning('VariableLongName', 13, 'variable completeHomeAddress has a long name')]
-
+        
         self.assertEqual(result, expectedWarnings)
 
     """ Nombre: test_unused_argument

@@ -1,19 +1,27 @@
 from .rule import *
 
-"""Hi"""
 
 class LongVariableVisitor(WarningNodeVisitor):
     """ Considera variables temporales y de instancia """
 
-    def __init__(self):
-        super().__init__()
-        self.limit = 15 #mar largo variables
+    def visit_Assign(self, node: Assign):
+        
+        # if len(node.id) > 15: # and node.ctx == Store()
+        #     self.addWarning('VariableLongName', node.lineno, 'variable' + node.id + 'has a long name')
+        # NodeVisitor.generic_visit(self, node)
 
-    def visit_Call(self, node):
-        if node.func.id == 'eval':
-            self.addWarning('EvalWarning', node.lineno, 'eval should not be used!!')
+        # if isinstance(node, Assign):
+        #     targets = node.targets
+        # else:
+        #     targets = node.args + node.body
+            for target in targets:
+                if isinstance(target, Name):
+                    # if isinstance(target, ast.Attribute):
+                    #     continue
+                    if len(target.id) > 15:
+                        self.addWarning("VariableLongName", target.lineno,
+                                        "variable " + target.id + " has a long name")
         NodeVisitor.generic_visit(self, node)
-
 
 
 class LongVariableNameRule(Rule):

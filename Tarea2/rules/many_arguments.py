@@ -19,7 +19,7 @@ class ManyArgumentsVisitor(WarningNodeVisitor):
     def visit_FunctionDef(self, node: FunctionDef):
         # Si esta definido dentro de un clase, asumir que uno de los argumentos sera self
         if self.currentClass != None:
-            self.threshold = 7
+            self.threshold = 7 # toy en una clase, tonce agregamos q se contará el argumento self
         else:
             self.threshold = 6
             
