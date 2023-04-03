@@ -1,6 +1,7 @@
 import unittest
 from rules import *
 from rewriter import *
+from warnings import warn
 
 """
 Tests para las reglas y transformaciones creadas en la tarea
@@ -47,6 +48,7 @@ class TestWarnings(unittest.TestCase):
         Warning('VariableLongName', 13, 'variable completeHomeAddress has a long name')]
         
         self.assertEqual(result, expectedWarnings)
+        
 
     """ Nombre: test_unused_argument
         Codigo a ser analizado: test-code/code-unused-argument.py

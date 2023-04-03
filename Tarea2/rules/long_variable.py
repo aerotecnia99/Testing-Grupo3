@@ -1,28 +1,21 @@
 from .rule import *
-
+import warnings
 
 class LongVariableVisitor(WarningNodeVisitor):
     """ Considera variables temporales y de instancia """
-
-    def visit_Assign(self, node: Assign):
-        
-        # if len(node.id) > 15: # and node.ctx == Store()
-        #     self.addWarning('VariableLongName', node.lineno, 'variable' + node.id + 'has a long name')
-        # NodeVisitor.generic_visit(self, node)
-
-        # if isinstance(node, Assign):
-        #     targets = node.targets
-        # else:
-        #     targets = node.args + node.body
-            for target in targets:
-                if isinstance(target, Name):
-                    # if isinstance(target, ast.Attribute):
-                    #     continue
-                    if len(target.id) > 15:
-                        self.addWarning("VariableLongName", target.lineno,
-                                        "variable " + target.id + " has a long name")
+    def visit_Attribute(self, node):
+        if len(node.attr) > 15:
+            self.addWarning("VariableLongName", node.lineno, "variable " + node.attr + " has a long name")
+            # warnings.warn(f"VariableLongName {node.lineno} variable {node.attr} has a long name")
         NodeVisitor.generic_visit(self, node)
 
+    def visit_Name(self, node):
+        if isinstance(node.ctx, Store):
+            if len(node.id) > 15:
+                self.addWarning("VariableLongName", node.lineno, "variable " + node.id + " has a long name")
+                # warnings.warn(f"VariableLongName {node.lineno} variable {node.id} has a long name")
+        NodeVisitor.generic_visit(self, node)
+        
 
 class LongVariableNameRule(Rule):
 
