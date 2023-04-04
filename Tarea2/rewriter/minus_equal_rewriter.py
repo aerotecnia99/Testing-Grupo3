@@ -55,6 +55,8 @@ class MinusEqualsTransformer(NodeTransformer):
                             op=Sub(),
                             value=Name(id=f'{node.value.right.id}', ctx=Load())
                             )
+                    
+        return node #retornar todos los nodos assign a los q si entra pero no tienen una BinOp a la derecha
 
 
 class MinusEqualsRewriterCommand(RewriterCommand):

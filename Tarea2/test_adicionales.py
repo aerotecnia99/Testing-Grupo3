@@ -111,6 +111,7 @@ class TestWarnings(unittest.TestCase):
         tree = command.apply(tree)
 
         expectedCode = self.get_ast_from_file('extra-test-code/expectedMinusEquals.py')
+        print(unparse(tree))
         self.assertEqual(dump(tree), dump(expectedCode))
 
 
