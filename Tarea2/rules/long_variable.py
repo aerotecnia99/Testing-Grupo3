@@ -1,5 +1,8 @@
 from .rule import *
 
+# Nota para el ayudante: Esos warnings comentados son de la liberia "warning"
+# y los usamos como una forma de obtener info de los errores de otra forma
+# pero en estricto rigor no forman parte de nuestra tarea :)
 
 class LongVariableVisitor(WarningNodeVisitor):
     """ Considera variables temporales y de instancia """
@@ -24,26 +27,3 @@ class LongVariableNameRule(Rule):
         visitor.visit(ast)
         return visitor.warningsList()
     
-
-##################### BORRRAR ##################
-
-
-# class Vehiculo():
-
-#     def __init__(self) -> None:
-#         self.kilometros = 0
-
-#     def foo(self):
-#         print("hola soy vehiculo")
-
-# class Avion(Vehiculo):
-
-#     def __init__(self):
-#         # super().__init__()
-#         pass
-        
-
-# avion = Avion()
-# print(avion.foo())
-
-##############################################

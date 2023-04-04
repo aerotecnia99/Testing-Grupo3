@@ -1,6 +1,9 @@
+# En la construcción de una función lambda
 lambda_func = lambda x: True if x > 10 else False
 
 
+# En el return de un método en una clase
+# Debe levantar warning
 class Capibara: 
 
     def __init__(self, patas):

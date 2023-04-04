@@ -1,5 +1,9 @@
 from .rewriter import *
-import warnings
+# import warnings
+
+# Nota para el ayudante: Esos warnings comentados son de la liberia "warning"
+# y los usamos como una forma de obtener info de los errores de otra forma
+# pero en estricto rigor no forman parte de nuestra tarea :)
 
 class MinusEqualsTransformer(NodeTransformer):
     "node visitor subclass"

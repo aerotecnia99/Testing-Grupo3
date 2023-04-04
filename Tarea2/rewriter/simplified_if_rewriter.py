@@ -1,5 +1,9 @@
 from .rewriter import *
-import warnings
+# import warnings
+
+# Nota para el ayudante: Esos warnings comentados son de la liberia "warning"
+# y los usamos como una forma de obtener info de los errores de otra forma
+# pero en estricto rigor no forman parte de nuestra tarea :)
 
 class SimplifiedIfTransformer(NodeTransformer):
     "node visitor subclass"
@@ -18,9 +22,9 @@ class SimplifiedIfTransformer(NodeTransformer):
             if isinstance(node.body, Constant) and node.body.value == False:
                 if isinstance(node.orelse, Constant) and node.orelse.value == True:
                     # warnings.warn(f'{node.test} {node.body} {node.orelse}')
+                    
+                    #Retornamos un nodo Unario, que es la negación de la expresión
                     return UnaryOp(op=Not(), operand=node.test)
-                        #tengo que retornar un nodo Unario
-                        # que es la negación de la expresión
                 
 
 

@@ -1,5 +1,9 @@
 from .rule import *
-import warnings
+# import warnings
+
+# Nota para el ayudante: Esos warnings comentados son de la liberia "warning"
+# y los usamos como una forma de obtener info de los errores de otra forma
+# pero en estricto rigor no forman parte de nuestra tarea :)
 
 class ArgNodeVisitor(NodeVisitor):
     def __init__(self):
@@ -14,7 +18,6 @@ class ArgNodeVisitor(NodeVisitor):
 
 class UnusedArgumentVisitor(WarningNodeVisitor):
     """Se levanta un warning por cada argumento en la definición de un método que no es usado dentro del mismo método"""
-    # body = cuerpo de la funcion
 
     def visit_FunctionDef(self, node: FunctionDef):
         # Si esta definido dentro de un clase, asumir que uno de los argumentos sera self

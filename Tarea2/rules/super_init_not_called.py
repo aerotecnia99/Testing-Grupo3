@@ -1,5 +1,4 @@
 from .rule import *
-import warnings
 
 class CalledFunctionsNodeVisitor(NodeVisitor):
     def __init__(self):
