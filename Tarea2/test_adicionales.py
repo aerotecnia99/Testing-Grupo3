@@ -41,7 +41,12 @@ class TestWarnings(unittest.TestCase):
 
 
         # Actualice el valor de expectedWarnings de acuerdo a su caso de prueba propuesto
-        expectedWarnings = []
+        expectedWarnings = [
+            Warning('VariableLongName', 3, 'variable espantapajaros_del_campo has a long name'),
+            Warning('VariableLongName', 12, 'variable __kilometraje_recorrido has a long name'),
+            Warning('VariableLongName', 16, 'variable viajar_a_este_lugar has a long name'),
+            Warning('VariableLongName', 19, 'variable talleres_de_reparacion_disponibles has a long name'),
+        ]
 
         self.assertEqual(result, expectedWarnings)
 
@@ -60,7 +65,11 @@ class TestWarnings(unittest.TestCase):
         result = unusedArgRule.analyze(tree)
 
         # Actualice el valor de expectedWarnings de acuerdo a su caso de prueba propuesto
-        expectedWarnings = []
+        expectedWarnings = [
+            Warning('UnusedArgument', 10, 'argument rut is not used'),
+            Warning('UnusedArgument', 19, 'argument edad is not used'),
+            Warning('UnusedArgument', 32, 'argument empresa is not used')
+        ]
 
         self.assertEqual(result, expectedWarnings)
 

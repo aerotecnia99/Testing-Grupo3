@@ -8,3 +8,4 @@ from .uninitialized_attribute import *
 from .many_arguments import *
 from .long_variable import *
 from .unused_argument import *
+from .super_init_not_called import *
