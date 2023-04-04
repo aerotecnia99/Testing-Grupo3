@@ -1,3 +1,5 @@
 
+
+ ---- TAREA 2 ---- 
 warning -> nodos visitor
 trans -> nodos trans

@@ -89,7 +89,9 @@ class TestWarnings(unittest.TestCase):
         result = superInitRule.analyze(tree)
 
         # Actualice el valor de expectedWarnings de acuerdo a su caso de prueba propuesto
-        expectedWarnings = []
+        expectedWarnings = [
+            Warning('SuperInitNotCalled', 17, 'subclass Hija does not call to super().__init__()')
+        ]
 
         self.assertEqual(result, expectedWarnings)
 
