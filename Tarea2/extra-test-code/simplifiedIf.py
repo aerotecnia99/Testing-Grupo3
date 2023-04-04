@@ -1,6 +1,6 @@
 lambda_func = lambda x: True if x > 10 else False
 
-#
+
 class Capibara: 
 
     def __init__(self, patas):
