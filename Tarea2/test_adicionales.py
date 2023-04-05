@@ -28,9 +28,18 @@ class TestWarnings(unittest.TestCase):
     """ Nombre: test_long_variable_name
         Codigo a ser analizado: extra-test-code/longVariableName.py
         Descripcion: Test para evaluar LongVariableNameRule considerando los siguientes escenarios:
-        - Linea <numero-linea> : <Descripcion de codigo - caso a considerar>
+        - Linea 3 : Uso de variable de nombre largo : espantapajaros_del_campo
+        - Linea 12 : Uso de variable de instancia, atributo privado, de nombre largo : __kilometraje_recorrido 
+        - Linea 16 : Uso de atributo fuera del __init__() de nombre largo: viajar_a_este_lugar
+        - Linea 19 : Uso de variable dentro de método de una clase de nombre largo: talleres_de_reparacion_disponibles
+
         
-        Resultado esperado (Una lista de warnings): .....
+        Resultado esperado (Una lista de warnings): [
+            Warning('VariableLongName', 3, 'variable espantapajaros_del_campo has a long name'),
+            Warning('VariableLongName', 12, 'variable __kilometraje_recorrido has a long name'),
+            Warning('VariableLongName', 16, 'variable viajar_a_este_lugar has a long name'),
+            Warning('VariableLongName', 19, 'variable talleres_de_reparacion_disponibles has a long name'),
+        ]
     """
 
     def test_long_variable_name(self):
@@ -53,9 +62,15 @@ class TestWarnings(unittest.TestCase):
     """ Nombre: test_unused_argument
         Codigo a ser analizado: extra-test-code/unusedArgument.py
         Descripcion: Test para evaluar UnusedArgumentRule considerando los siguientes escenarios:
-        - Linea <numero-linea> : <Descripcion de codigo - caso a considerar>
+        - Linea 2 : En funcion saludar, argumento "saludo" no es usado dentro de la función pero si en su return 
+        - Linea 10 : En clase Persona, argumento "rut" no es usado dentro del método __init__(), pero existe atributo de clase tiene el mismo nombre "self.rut" 
+        - Linea 19 : En clase Gato, argumento "edad" no es usado dentro del método __init__() pero sí es utilizado dentro de otro método de la clase
+        - Linea 32 : En clase Trabajador (subclase de Persona), argumento "empresa" no es usado en super().__init__()
         
-        Resultado esperado (Una lista de warnings): .....
+        Resultado esperado (Una lista de warnings): 
+        [Warning('UnusedArgument', 10, 'argument rut is not used'),
+            Warning('UnusedArgument', 19, 'argument edad is not used'),
+            Warning('UnusedArgument', 32, 'argument empresa is not used')]
     """
 
     def test_unused_argument(self):
@@ -77,9 +92,11 @@ class TestWarnings(unittest.TestCase):
     """ Nombre: test_super_init_not_called
         Codigo a ser analizado: extra-test-code/superInitNotCalled.py
         Descripcion: Test para evaluar SuperInitNotCalledRule considerando los siguientes escenarios:
-        - Linea <numero-linea> : <Descripcion de codigo - caso a considerar>
-        
-        Resultado esperado (Una lista de warnings): .....
+        - Linea 20: Definicion de __init__ de Hija (subclase de A y de B) sin llamada a super().__init__
+
+        Resultado esperado (Una lista de warnings):
+            [Warning('SuperInitNotCalled', 17, 'subclass Hija does not call to super().__init__()')]
+
     """
 
     def test_super_init_not_called(self):
@@ -99,7 +116,9 @@ class TestWarnings(unittest.TestCase):
     """ Nombre: test_minus_equal_rewriter
         Codigo a ser analizado: extra-test-code/minusEquals.py
         Descripcion: Test para evaluar transformador MinusEqualsRewriterCommand considerando los siguientes escenarios:
-        - Linea <numero-linea> : <Descripcion de codigo - caso a considerar>
+        - Linea 3 : Variable definida en ejecución. Asignación x = x - 7
+        - Linea 13: Variable definida en un metodo de una función. Asignación a self.n_monedas = self.n_monedas - 100 
+
         
         Resultado esperado: extra-test-code/expectedMinusEquals.py
     """
@@ -118,7 +137,8 @@ class TestWarnings(unittest.TestCase):
     """ Nombre: test_simplified_if
         Codigo a ser analizado: extra-test-code/simplifiedIf.py
         Descripcion: Test para evaluar SimplifiedIfRewriterCommand considerando los siguientes escenarios:
-        - Linea <numero-linea> : <Descripcion de codigo - caso a considerar>
+        - Linea 2 : En la construcción de una función lambda. Uso de la expresion if cuando puede ser reemplazada por el if.test
+        - Linea 13: En el return de un método dentro de una clase. Uso de la expresion if cuando puede ser reemplazada por el if.test
         
         Resultado esperado: extra-test-code/expectedSimplifiedIf.py
     """

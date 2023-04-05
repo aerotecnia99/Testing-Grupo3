@@ -1,6 +1,6 @@
 # variables definidas en ejecucion
 x = 4
-x = x - 5
+x = x - 7
 
 # variable definida en un metodo de una función
 class Alcancia:
