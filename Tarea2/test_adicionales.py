@@ -117,7 +117,6 @@ class TestWarnings(unittest.TestCase):
         Codigo a ser analizado: extra-test-code/minusEquals.py
         Descripcion: Test para evaluar transformador MinusEqualsRewriterCommand considerando los siguientes escenarios:
         - Linea 3 : Variable definida en ejecución. Asignación x = x - 7
-        - Linea 13: Variable definida en un metodo de una función. Asignación a self.n_monedas = self.n_monedas - 100 
 
         
         Resultado esperado: extra-test-code/expectedMinusEquals.py
@@ -130,7 +129,7 @@ class TestWarnings(unittest.TestCase):
         tree = command.apply(tree)
 
         expectedCode = self.get_ast_from_file('extra-test-code/expectedMinusEquals.py')
-        print(unparse(tree))
+        #print(unparse(tree))
         self.assertEqual(dump(tree), dump(expectedCode))
 
 
