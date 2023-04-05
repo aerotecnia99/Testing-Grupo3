@@ -67,10 +67,11 @@ class TestWarnings(unittest.TestCase):
         - Linea 19 : En clase Gato, argumento "edad" no es usado dentro del método __init__() pero sí es utilizado dentro de otro método de la clase
         - Linea 32 : En clase Trabajador (subclase de Persona), argumento "empresa" no es usado en super().__init__()
         
-        Resultado esperado (Una lista de warnings): 
-        [Warning('UnusedArgument', 10, 'argument rut is not used'),
+        Resultado esperado (Una lista de warnings): [
+            Warning('UnusedArgument', 10, 'argument rut is not used'),
             Warning('UnusedArgument', 19, 'argument edad is not used'),
-            Warning('UnusedArgument', 32, 'argument empresa is not used')]
+            Warning('UnusedArgument', 32, 'argument empresa is not used')
+        ]
     """
 
     def test_unused_argument(self):
