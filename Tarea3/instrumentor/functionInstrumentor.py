@@ -18,7 +18,7 @@ class FunctionInstrumentor(NodeTransformer):
         transformedNode = NodeTransformer.generic_visit(self, node)
         
         # Inyectamos codigo para llamar al profiler en la primera linea de la definicion de una funcion
-        argList = list(map(lambda x: x.arg, transformedNode.args.args))
+        argList = list(map(lambda x: x.arg, transformedNode.args.args)) # lista de argumentos de una función
         injectedCode = parse('FunctionProfiler.record(\''+
         transformedNode.name + '\',[' + ", ".join(argList) + '])')
     
