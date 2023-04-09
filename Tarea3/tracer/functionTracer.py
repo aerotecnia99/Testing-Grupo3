@@ -15,7 +15,7 @@ funTracer.report_executed_functions()
 class FunctionTracer(StackInspector):
 
     def __init__(self):
-        self.original_trace_function = None
+        super().__init__(None, self.traceit)
         self.executed_functions = []
 
     # Funcion que rastrea el codigo
@@ -34,21 +34,3 @@ class FunctionTracer(StackInspector):
         result = set(self.executed_functions)
         return sorted(result, key=lambda a: a[1])
 
-    # Esta funcion se llama al comienzo de un bloque 'with' y comienza con el rastreo
-    def __enter__(self):
-        self.original_trace_function = sys.gettrace()
-        sys.settrace(self.traceit)
-
-        return self
-
-    # Esta funcion se llama al final de un bloque 'with' y termina el rastreo.
-    # Retorna 'None' si _todo funciona bien y si retorna 'False' significa que hubo un error interno (por nuestra clase Tracer o subclases).
-    def __exit__(self, exc_tp, exc_value, exc_traceback: TracebackType):
-        sys.settrace(self.original_trace_function)
-
-        # Note que debemos retornar un valor 'False' para indicar que hubo un error interno y levantar las excepciones correspondientes.
-        if self.is_internal_error(exc_tp, exc_value, exc_traceback):
-            return False
-        else:
-            # Significa que _todo funciona bien
-            return None
