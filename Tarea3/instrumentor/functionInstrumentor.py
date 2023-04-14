@@ -37,13 +37,13 @@ class FunctionProfiler(Profiler):
 
     @classmethod
     def record(cls, functionName, args):
-        cls.getInstance().ins_record(functionName,args)
+        cls.getInstance().ins_record(functionName, args)
     
     # Metodos de instancia
     def __init__(self):
         self.functions_called = []
 
-    def ins_record(self, functionName, args):  
+    def ins_record(self, functionName, args):
         self.functions_called.append((functionName, args))
         
     def report_executed_functions(self):

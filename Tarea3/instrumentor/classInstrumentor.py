@@ -28,19 +28,13 @@ class ClassInstrumentor(NodeTransformer):
         transformedNode = NodeTransformer.generic_visit(self, node)
         
         # Creación Código a inyectar para llamar a profiler
-        print(self.currentClass, transformedNode.name)
         if self.currentClass != None:
             injectedCode = parse('ClassProfiler.record(\''+
             transformedNode.name + '\', ' + str(transformedNode.lineno) + ', ' + self.currentClass + ')')
-
-            # print('ClassProfiler.record(\''+ transformedNode.name + '\', ' + str(transformedNode.lineno) + ', ' + self.currentClass + ')')
-
             transformedNode.body.insert(0, injectedCode.body[0])
             
-            fix_missing_locations(transformedNode)
+        fix_missing_locations(transformedNode)
         return transformedNode
-
-    # visit method ?
 
 
 class ClassProfiler(Profiler):
@@ -48,32 +42,30 @@ class ClassProfiler(Profiler):
     # Métodos para inyectar código
     @classmethod
     def record(cls, methodName, lineno, methodClass):
-        print(methodName, lineno, methodClass)
         cls.getInstance().ins_record(methodName, lineno, methodClass)
 
     # Métodos de instancia
     def __init__(self):
-        self.methods_called = []
+        self.methods_called = set()
 
     def ins_record(self, methodName, lineno, methodClass):
-        self.methods_called.append((methodName, lineno, methodClass))
+        self.methods_called.add((methodName, lineno, methodClass.__name__))
 
     def report_executed_methods(self):
+        self.methods_called = sorted(self.methods_called, key=by_lineno)
         print("-- Executed methods --")
         for (fun, lineno, clase) in self.methods_called:
             print(f"Method {fun} called in line {lineno} from class {clase}")
-        print(len(self.methods_called))
         return self.methods_called
     
     def report_executed_by(self, methodName):
         pass
 
-    
-
-    
-
 
 def instrument(ast):
     visitor = ClassInstrumentor()
-    # devuelve ast con el código inyectado.
-    return  fix_missing_locations(visitor.visit(ast))
+    return fix_missing_locations(visitor.visit(ast))
+
+
+def by_lineno(tuple):
+    return tuple[1]
