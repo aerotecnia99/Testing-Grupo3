@@ -21,7 +21,7 @@ class FunctionInstrumentor(NodeTransformer):
         argList = list(map(lambda x: x.arg, transformedNode.args.args)) # lista de argumentos de una función
         injectedCode = parse('FunctionProfiler.record(\''+
         transformedNode.name + '\',[' + ", ".join(argList) + '])')
-    
+
         if isinstance(transformedNode.body, list):
             transformedNode.body.insert(0, injectedCode.body[0])
         else:
@@ -37,13 +37,13 @@ class FunctionProfiler(Profiler):
 
     @classmethod
     def record(cls, functionName, args):
-        cls.getInstance().ins_record(functionName,args)
+        cls.getInstance().ins_record(functionName, args)
     
     # Metodos de instancia
     def __init__(self):
         self.functions_called = []
 
-    def ins_record(self, functionName, args):  
+    def ins_record(self, functionName, args):
         self.functions_called.append((functionName, args))
         
     def report_executed_functions(self):

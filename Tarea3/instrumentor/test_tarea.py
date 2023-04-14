@@ -1,5 +1,6 @@
 import unittest
 from classInstrumentor import *
+import codegen
 
 """
 Tests para el instrumentor profile de clases creado en la tarea 3
@@ -50,6 +51,7 @@ class TestClassProfiler(unittest.TestCase):
     """
 
     def test_methods_executed(self):
+  
         newTree = self.get_instrumentation('input_code/code_task.py', 'code_task.py')
 
         from code_task import Rectangle
