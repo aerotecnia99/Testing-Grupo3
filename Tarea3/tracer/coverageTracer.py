@@ -34,7 +34,7 @@ class CoverageTracer(StackInspector):
         return sorted(result, key=lambda a: a[1])
 
 
-    def report_execution_count(self):
+    def report_execution_count(self): # Funciona bien
         result = self.executed_lines
         aux_list = []
         result2 = []
