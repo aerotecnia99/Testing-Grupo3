@@ -1,6 +1,5 @@
 import unittest
 from classInstrumentor import *
-import codegen
 
 """
 Tests para el instrumentor profile de clases creado en la tarea 3

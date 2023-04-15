@@ -1,3 +1,6 @@
 *.vscode
 
 tracer/__pycache__
+
+/instrumentor/code_task.py
+/instrumentor/code_task1.py
