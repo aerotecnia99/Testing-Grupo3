@@ -1,6 +1,6 @@
 import unittest
 from ast import *
-from coverageTracer import *
+from coverageTracer import CoverageTracer
 from code_task import *
 
 """

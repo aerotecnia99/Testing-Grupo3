@@ -34,3 +34,39 @@ class FunctionTracer(StackInspector):
         result = set(self.executed_functions)
         return sorted(result, key=lambda a: a[1])
 
+
+
+
+
+
+###################################
+###### PRUEBA DE TRACER ##########
+###################################
+
+
+
+def remove_html_tags(s):
+    tag = False
+    quote = False
+    out = ""
+
+    for c in s:
+        if c == '<' and not quote:
+            tag = True
+        elif c == '>' and not quote:
+            tag = False
+        elif (c == '"' or c == "'") and tag:
+            quote = not quote
+        elif not tag:
+            out = out + c
+
+    return out
+
+
+
+with FunctionTracer() as funTracer:
+    remove_html_tags("<b>abc</b>")
+
+result = funTracer.report_executed_functions()
+
+print(result)
