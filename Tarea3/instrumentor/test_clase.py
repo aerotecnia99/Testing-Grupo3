@@ -24,6 +24,10 @@ class TestFunctionInstrumentor(unittest.TestCase):
 
         newTree = instrument(tree)
 
+        f = open('codigo.py', "w")
+        f.write(unparse(newTree))
+        f.close()
+
         # Estas lineas son para escribir el nuevo AST en un archivo
         #f = open(writeFile, "w")
         #f.write(unparse(newTree))
