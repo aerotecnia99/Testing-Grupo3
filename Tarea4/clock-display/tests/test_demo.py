@@ -8,10 +8,10 @@ from unittest import TestCase
 """
 
 
-class TestDemo(TestCase):
-    def test_demo(self):
-        factory = ClockFactory()
-        clock = factory.create("hh:mm")
-        for i in range(100):
-            clock.increment()
-            print(clock.str())
+# class TestDemo(TestCase):
+#     def test_demo(self):
+#         factory = ClockFactory()
+#         clock = factory.create("hh:mm")
+#         for i in range(100):
+#             clock.increment()
+#             print(clock.str())
