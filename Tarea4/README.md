@@ -13,8 +13,13 @@
 | Dafne Arriagada :red_car:  | dafne.arriagada@uc.cl  | [@Dafnemami](https://github.com/Dafnemami)               |
 | Valentina Campaña :cactus: | valentinacamph@uc.cl   | [@aerotecnia99 ](https://github.com/aerotecnia99)        |
 
-# Actividad 3: Pynguin.
-
 
 ## Declaración 
+
+
+Durante el proceso de desarrollo de la tarea trabajamos de forma independiente y conjunta. En virtud de lo anterior, la distribución de carga termina siendo:
+
+1. ACTIVIDAD 1 COVERAGE: DAFNE ARRIAGADA
+2. ACTIVIDAD 2 MUTATEST: VALENTINA CAMPAÑA
+3. ACTIVIDAD 3 PYNGUIN: AMBAS
 
