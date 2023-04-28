@@ -81,6 +81,14 @@ class TestSrc(unittest.TestCase):
 
     ## %: operación resto
 
+    ## TEST CLOCK FACTORY
+
+    def test_factory(self):
+        factory = ClockFactory()
+        clock = factory.create("hh:mm")
+        result = clock.str()
+        self.assertEqual(result, "00:00")
+
 
     ### MUTA TESTS
 
