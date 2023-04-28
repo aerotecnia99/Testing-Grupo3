@@ -55,6 +55,13 @@ class TestSrc(unittest.TestCase):
         result = clock_display.str()
         self.assertEqual(result, "00:01:00")
         
+    def test_formato_bin(self):
+        #clock_display = ClockDisplay([b"\xe9\x18"])
+        clock_display = ClockDisplay({1:2, 2:4})
+        result = clock_display.str()
+        print(result)
+        # self.assertEqual(result, "") #result = 00
+
 
     def test6(self):
         clock_display = ClockDisplay([24,60,60])
