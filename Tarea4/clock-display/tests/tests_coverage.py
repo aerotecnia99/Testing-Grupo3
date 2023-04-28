@@ -35,7 +35,7 @@ class TestSrc(unittest.TestCase):
         result = display_clonado.str()
         self.assertEqual(result, "10")
 
-        
+
     # ## TESTS CLOCK DISPLAY
 
     def test5(self):
@@ -48,7 +48,7 @@ class TestSrc(unittest.TestCase):
         ## hh:mm
 
         clock_display = ClockDisplay([24,60,60])
-        clock_display.numbers = [NumberDisplay(0,24), 
+        clock_display.numbers = [NumberDisplay(0,24),
                                 NumberDisplay(0,60),
                                 NumberDisplay(59,60)]
         clock_display.increment()
@@ -86,59 +86,53 @@ class TestSrc(unittest.TestCase):
 
     def test8(self):
         clock = ClockDisplay([24, 60, 60])
-        for i in range(4):
-            clock.increment()
-        assert clock.str() == "00:00:04"
-
-    def test9(self): # NO FUNCIONANDO
-        print("TEST 8")
-        clock = ClockDisplay([24, 60])
-        print(clock.str())
-        print(clock.numbers[0].str())
-        print(clock.numbers[1].str())
-        clock.numbers.pop()
-        print(clock.str())
-        print("largo", len(clock.numbers) - 1)
         clock.increment()
+        assert clock.str() == "00:00:01"
 
-    def test10(self):
+    def test9(self):    # testea línea 12 en clockdisplay mutacion and -> or
+        clock = ClockDisplay([24, 60])
+        clock.numbers = []
+        clock.increment()
+        assert clock.str() == ""
+
+    def test11(self):
         clock = ClockDisplay([24, 60])
         clock.numbers[1].increase()
         assert clock.numbers[1].str() == "01"
 
-    def test11(self):
+    def test12(self):
         clock = ClockDisplay([24, 60])
         clock.numbers[1].value = 100
         assert clock.numbers[1].str() == "100"
 
-    def test12(self):   # display_number 21: mutation from <class 'ast.Lt'> to <class 'ast.LtE'>
+    def test13(self):   # display_number 21: mutation from <class 'ast.Lt'> to <class 'ast.LtE'>
         clock = ClockDisplay([24, 60])
         clock.numbers[1].value = 60
         clock.numbers[1].limit = 60
         assert clock.numbers[1].invariant() is False
 
-    def test13(self):    # display_number 21: mutation from <class 'ast.Lt'> to <class 'ast.Gt'>
+    def test14(self):    # display_number 21: mutation from <class 'ast.Lt'> to <class 'ast.Gt'>
         clock = ClockDisplay([24, 60])
         clock.numbers[1].value = 61
         clock.numbers[1].limit = 60
         assert clock.numbers[1].invariant() is False
 
-    def test14(self):   # display_number 9: mutation from <class 'ast.Eq'> to <class 'ast.Lt'>
+    def test15(self):   # display_number 9: mutation from <class 'ast.Eq'> to <class 'ast.Lt'>
         clock = ClockDisplay([24, 60])
         clock.numbers[1].value = -1
         assert clock.numbers[1].increase() is True
 
-    def test15(self):   # display_number 9: mutation from <class 'ast.Eq'> to <class 'ast.LtE'>
+    def test16(self):   # display_number 9: mutation from <class 'ast.Eq'> to <class 'ast.LtE'>
         clock = ClockDisplay([24, 60])
         clock.numbers[1].limit = -60
         assert clock.numbers[1].increase() is False
 
-    def test16(self):   # display_number 16: mutation from <class 'ast.Lt'> to <class 'ast.LtE'>
+    def test17(self):   # display_number 16: mutation from <class 'ast.Lt'> to <class 'ast.LtE'>
         clock = ClockDisplay([24, 60])
         clock.numbers[1].value = 10
         assert clock.numbers[1].str() == "10"
 
-    def test17(self):   # display_number 8: mutation from <class 'ast.Mod'> to <class 'ast.Pow'>
+    def test18(self):
         # display_number 8: mutation from <class 'ast.Add'> to <class 'ast.Mod'
         # display_number 8: mutation from <class 'ast.Add'> to <class 'ast.Sub'>
         # Se supone que no hay valores x e y que cumplan
@@ -147,6 +141,14 @@ class TestSrc(unittest.TestCase):
         number = NumberDisplay(3, 5)
         assert number.increase() is False
         assert number.value == 4
+
+    def test19(self):   # clock_display 12: currentDisplay >= 0 mutation >= a >
+        clock = ClockDisplay([24, 60])
+        clock.numbers = []
+        number = NumberDisplay(3, 5)
+        clock.numbers.append(number)
+        clock.increment()
+        assert clock.str() == "04"
 
 
 if __name__ == '__main__':
