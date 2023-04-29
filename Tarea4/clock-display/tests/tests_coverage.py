@@ -55,12 +55,17 @@ class TestSrc(unittest.TestCase):
         result = clock_display.str()
         self.assertEqual(result, "00:01:00")
         
-    def test_formato_bin(self):
-        #clock_display = ClockDisplay([b"\xe9\x18"])
-        clock_display = ClockDisplay({1:2, 2:4})
-        result = clock_display.str()
-        print(result)
-        # self.assertEqual(result, "") #result = 00
+    ##############################################################   
+    #### IGNORAR ESTE TEST PARA COVERAGE, SE USÓ PARA ENTENDER
+    #### MEJOR LOS TESTS GENERADOS POR PYNGUIN
+    # def test_formato_bin(self):
+    #     #clock_display = ClockDisplay([b"\xe9\x18"])
+    #     clock_display = ClockDisplay({1:2, 2:4})
+    #     result = clock_display.str()
+    #     print(result)
+    #     # self.assertEqual(result, "") #result = 00
+    ##############################################################   
+    ##############################################################   
 
 
     def test6(self):
@@ -76,6 +81,15 @@ class TestSrc(unittest.TestCase):
                                 NumberDisplay(59,60)]
         result = clock_display.invariant()
         self.assertEqual(result, True)
+    
+    ## TEST CLOCK FACTORY
+    
+    def test_factory(self):
+        factory = ClockFactory()
+        clock = factory.create("hh:mm:ss")
+        result = clock.str()
+        self.assertEqual(result, "00:00:00")
+
 
 
     ##obs: list(map(fx, iterable))
